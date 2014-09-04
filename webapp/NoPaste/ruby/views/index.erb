@@ -1,0 +1,33 @@
+    <div class="container-fluid">
+      <div class="row-fluid">
+      <%== erb :sidebar, :layout => false %>
+        <div class="span9">
+          <div class="hero-unit">
+            <h2>NoPaste!!</h2>
+              <% unless @session[:username].nil? %>
+              <form action="<%= url_for('/post') %>" method="post">
+                <%== Rack::Csrf.tag(env) %>
+                <div class="control-group <%= !@errors['content'].empty? ? 'error' : '' %>">
+                  <textarea style="width: 90%; height: 300px;" name="content"></textarea>
+                <% @errors['content'].keys.each do |error| %>
+                <span class="help-inline">
+                  <% case error
+                     when 'NOT_NULL' %>Required
+                  <% end %>
+                </span>
+                <% end %>
+                </div>
+                <div class="control-group">
+                  <input type="submit" value="post" class="btn btn-primary">
+                </div>
+              </form>
+              <% else %>
+                <p>
+                  <a class="btn btn-primary" href="<%= url_for('/signin') %>">Please sign in</a>
+                </p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

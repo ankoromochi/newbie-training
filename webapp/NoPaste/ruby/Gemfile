@@ -1,0 +1,18 @@
+# A sample Gemfile
+source "https://rubygems.org"
+
+gem 'sinatra'
+gem 'sinatra-contrib'
+gem 'emk-sinatra-url-for'
+gem 'erubis'
+gem 'mysql2'
+gem 'mysql2-cs-bind'
+gem 'bcrypt'
+gem 'rack_csrf'
+
+gem 'unicorn'
+
+group :test do
+  gem 'rspec'
+  gem 'rspec-html-matchers'
+end
